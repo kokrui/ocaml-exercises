@@ -16,8 +16,8 @@ open! Base
 
    Let's rewrite [simpler_sum] and [simpler_product] using List.fold *) 
 
-let simpler_sum xs = failwith "For you to implement"
-let simpler_product xs = failwith "For you to implement"
+let simpler_sum xs = List.fold xs ~init:0 ~f:( + )
+let simpler_product xs = List.fold xs ~init:1 ~f:( * )
 
 (** ========== [List.map] ========== **)
 (* [List.map] has the following signature:
@@ -30,7 +30,7 @@ let simpler_product xs = failwith "For you to implement"
    Let's write a function that takes in an int list and transforms it into a
    float list. (Hint: you can cast an int to a float using [Float.of_int].) *)
                        
-let float_of_int xs = failwith "For you to implement"
+let float_of_int xs = List.map xs ~f:Float.of_int
 
 (** ========== [List.init] ========== **)
 (* [List.init] has the following signature:
@@ -43,7 +43,9 @@ let float_of_int xs = failwith "For you to implement"
 
    Let's rewrite the [range] function we wrote in problem 9 to use [init].  *)
 
-let range from to_ = failwith "For you to implement"
+let range from to_ = 
+   let add_from x = x + from in
+   List.init (to_ - from) ~f:add_from
 
 (** ========== [List.range] ========== **)
 (* Turns out this special case of [List.init] is useful enough that it has it's own 
@@ -76,7 +78,9 @@ let range from to_ = failwith "For you to implement"
    Let's use [iter] to print a list of ints. Remember that we can use
    [Stdio.printf] to print formatted strings. *)
 
-let print_int_list xs = failwith "For you to implement"
+let print_int_list xs = List.iter xs ~f:(Stdio.printf "%d\n")
+
+let () = print_int_list (range 1 10)
 
 (* There are many more useful [List] functions, which you can read about here:
    https://ocaml.janestreet.com/ocaml-core/latest/doc/base/Base/List/index.html
