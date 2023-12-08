@@ -44,7 +44,10 @@ let card_value_to_string card_value =
 (* Write a function that computes the score of a card (aces should score 11
    and face cards should score 10). *)
 let card_value_to_score card_value =
-  failwith "For you to implement"
+  match card_value with
+  | Ace -> 11
+  | Number i -> i
+  | _ -> 10
 
 (* Remember the list type? We can define a list as a variant type too! *)
 type int_list = 
